@@ -431,3 +431,6 @@ function pintar(lista) {
     // Actualizamos el resumen con el número de recetas
     document.querySelector("#resumen").textContent = "Hay " + lista.length + " recetas.";
 }
+
+// 3. Mostramos las recetas en la página
+pintar(recetas);
