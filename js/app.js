@@ -408,3 +408,26 @@ function crearTarjeta(elemento) {
     // Devolvemos la tarjeta creada
     return tarjeta;
 }
+
+// 2. Función que pinta todas las recetas en la página
+function pintar(lista) {
+
+    // Buscamos el elemento HTML donde aparecerán las tarjetas
+    const listado = document.querySelector("#listado");
+
+    // Borramos las tarjetas anteriores para no duplicarlas
+    listado.replaceChildren();
+
+    // Recorremos las recetas
+    for (const elemento of lista) {
+
+        // Creamos una tarjeta para cada receta
+        const tarjeta = crearTarjeta(elemento);
+
+        // Añadimos la tarjeta al listado
+        listado.append(tarjeta);
+    }
+
+    // Actualizamos el resumen con el número de recetas
+    document.querySelector("#resumen").textContent = "Hay " + lista.length + " recetas.";
+}
