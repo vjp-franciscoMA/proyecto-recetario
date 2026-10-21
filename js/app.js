@@ -335,6 +335,7 @@ listar(recetas);
 
 // RETO 3: ESTADÍSTICAS DE LAS RECETAS
 
+/*
 function estadisticas(lista) {
 
     // Comprobamos si la lista está vacía
@@ -375,9 +376,10 @@ estadisticas(recetas);
 
 // Probamos qué ocurre si la lista está vacía
 estadisticas([]);
+*/
 
 /* SPRINT 1 */
-/* RETO 2: TU COLECCIÓN EN LA PÁGINA */
+/* PARTE B RETO 2: TU COLECCIÓN EN LA PÁGINA */
 
 // 1. Función que crea una tarjeta para una receta
 function crearTarjeta(elemento) {
@@ -434,3 +436,4 @@ function pintar(lista) {
 
 // 3. Mostramos las recetas en la página
 pintar(recetas);
+
