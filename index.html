@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Mi recetario</title>
+
+    <!-- Enlazo la hoja de estilos para dar formato a la página. -->
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Mi recetario</h1>
+
+    <!-- Aquí pongo el título y el resumen de las recetas. -->
+    <header>
+        <h1 id="titulo">Mi recetario</h1>
+        <p id="resumen"></p>
+    </header>
+
+    <!-- Aquí mostraré las estadísticas del recetario más adelante. -->
+    <p id="estadisticas"></p>
+
+    <!-- Aquí aparecerán las tarjetas de las recetas. -->
+    <main id="listado"></main>
+
+    <!-- Cargo el JavaScript cuando el HTML ya se ha procesado. -->
     <script src="js/app.js" defer></script>
+
 </body>
 </html>
