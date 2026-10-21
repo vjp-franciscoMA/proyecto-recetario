@@ -375,3 +375,36 @@ estadisticas(recetas);
 
 // Probamos qué ocurre si la lista está vacía
 estadisticas([]);
+
+/* SPRINT 1 */
+/* RETO 2: TU COLECCIÓN EN LA PÁGINA */
+
+// 1. Función que crea una tarjeta para una receta
+function crearTarjeta(elemento) {
+
+    // Creamos el artículo que será la tarjeta
+    const tarjeta = document.createElement("article");
+    tarjeta.className = "tarjeta";
+
+    // Creamos el título con el nombre de la receta
+    const titulo = document.createElement("h3");
+    titulo.textContent = elemento.nombre;
+
+    // Creamos un párrafo con la categoría
+    const categoria = document.createElement("p");
+    categoria.textContent = "Categoría: " + elemento.categoria;
+
+    // Creamos otro párrafo con el tiempo
+    const tiempo = document.createElement("p");
+    tiempo.textContent = "Tiempo: " + elemento.tiempo + " minutos";
+
+    // Creamos otro párrafo con la dificultad
+    const dificultad = document.createElement("p");
+    dificultad.textContent = "Dificultad: " + elemento.dificultad;
+
+    // Añadimos los datos a la tarjeta
+    tarjeta.append(titulo, categoria, tiempo, dificultad);
+
+    // Devolvemos la tarjeta creada
+    return tarjeta;
+}
