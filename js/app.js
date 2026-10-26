@@ -518,3 +518,15 @@ function ordenar(lista, criterio) {
     return copia;
 }
 
+// 3. Función que actualiza las recetas de la página
+function actualizar() {
+
+    // Primero buscamos las recetas que coinciden
+    const encontradas = buscarPorTexto(recetas, textoBuscado);
+
+    // Después ordenamos las recetas encontradas
+    const ordenadas = ordenar(encontradas, criterio);
+
+    // Por último, las mostramos en la página
+    pintar(ordenadas);
+}
