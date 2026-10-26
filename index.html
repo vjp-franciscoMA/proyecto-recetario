@@ -6,24 +6,26 @@
 
     <title>Mi recetario</title>
 
-    <!-- Enlazo la hoja de estilos para dar formato a la página. -->
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
-    <!-- Aquí pongo el título y el resumen de las recetas. -->
     <header>
         <h1 id="titulo">Mi recetario</h1>
         <p id="resumen"></p>
     </header>
 
-    <!-- Aquí mostraré las estadísticas del recetario más adelante. -->
+    <!-- Buscador y botones para ordenar las recetas -->
+    <section class="controles">
+        <input id="buscador" type="search" placeholder="Buscar...">
+        <button id="ordenNombre">Ordenar A-Z</button>
+        <button id="ordenTiempo">Ordenar por tiempo</button>
+    </section>
+
     <p id="estadisticas"></p>
 
-    <!-- Aquí aparecerán las tarjetas de las recetas. -->
     <main id="listado"></main>
 
-    <!-- Cargo el JavaScript cuando el HTML ya se ha procesado. -->
     <script src="js/app.js" defer></script>
 
 </body>
