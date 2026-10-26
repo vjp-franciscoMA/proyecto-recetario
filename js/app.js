@@ -529,6 +529,9 @@ function actualizar() {
 
     // Por último, las mostramos en la página
     pintar(ordenadas);
+
+    // Actualizamos el resumen con el número de recetas mostradas
+    pintarResumen(ordenadas.length);
 }
 
 // 4. Evento del buscador
