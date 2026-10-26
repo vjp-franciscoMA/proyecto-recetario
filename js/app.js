@@ -540,3 +540,19 @@ buscador.addEventListener("input", () => {
 
     actualizar();
 });
+
+// 5. Evento del botón para ordenar por nombre
+document.querySelector("#ordenNombre").addEventListener("click", () => {
+
+    criterio = "nombre";
+
+    actualizar();
+});
+
+// 6. Evento del botón para ordenar por tiempo
+document.querySelector("#ordenTiempo").addEventListener("click", () => {
+
+    criterio = "tiempo";
+
+    actualizar();
+});
