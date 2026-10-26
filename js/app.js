@@ -489,3 +489,11 @@ function pintarEstadisticas(lista) {
 
 // 3. Mostramos las estadísticas
 pintarEstadisticas(recetas);
+
+
+// RETO S11
+// PARTE B - RETO 2: Busca y ordena en tu aplicación
+
+// 1. Variables para guardar la búsqueda y el orden
+let textoBuscado = "";
+let criterio = "ninguno";
