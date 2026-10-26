@@ -497,3 +497,24 @@ pintarEstadisticas(recetas);
 // 1. Variables para guardar la búsqueda y el orden
 let textoBuscado = "";
 let criterio = "ninguno";
+
+// 2. Función para ordenar las recetas
+function ordenar(lista, criterio) {
+
+    // Hacemos una copia para no modificar el array original
+    const copia = [...lista];
+
+    if (criterio === "nombre") {
+
+        // Ordenamos por nombre de la A a la Z
+        copia.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+    } else if (criterio === "tiempo") {
+
+        // Ordenamos por tiempo, de menor a mayor
+        copia.sort((a, b) => a.tiempo - b.tiempo);
+    }
+
+    return copia;
+}
+
