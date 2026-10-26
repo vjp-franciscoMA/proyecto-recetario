@@ -530,3 +530,13 @@ function actualizar() {
     // Por último, las mostramos en la página
     pintar(ordenadas);
 }
+
+// 4. Evento del buscador
+const buscador = document.querySelector("#buscador");
+
+buscador.addEventListener("input", () => {
+
+    textoBuscado = buscador.value;
+
+    actualizar();
+});
