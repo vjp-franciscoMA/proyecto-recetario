@@ -435,7 +435,7 @@ function pintar(lista) {
 }
 
 // 3. Mostramos las recetas en la página
-pintar(recetas);
+// pintar(recetas);
 
 /* PARTE C: ESTADÍSTICAS EN LA PÁGINA */
 
@@ -556,3 +556,6 @@ document.querySelector("#ordenTiempo").addEventListener("click", () => {
 
     actualizar();
 });
+
+// 7. Mostramos las recetas al abrir la página
+actualizar();
