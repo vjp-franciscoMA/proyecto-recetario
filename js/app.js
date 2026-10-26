@@ -437,3 +437,55 @@ function pintar(lista) {
 // 3. Mostramos las recetas en la página
 pintar(recetas);
 
+/* PARTE C: ESTADÍSTICAS EN LA PÁGINA */
+
+// 1. Función que calcula las estadísticas
+function estadisticas(lista) {
+
+    // Comprobamos si la lista está vacía
+    if (lista.length === 0) {
+        return null;
+    }
+
+    // Variables para guardar la suma y el tiempo máximo
+    let suma = 0;
+    let maximo = lista[0];
+
+    // Recorremos todas las recetas
+    for (const receta of lista) {
+        suma += receta.tiempo;
+
+        if (receta.tiempo > maximo.tiempo) {
+            maximo = receta;
+        }
+    }
+
+    // Calculamos la media
+    const media = suma / lista.length;
+
+    // Devolvemos los resultados
+    return {
+        total: suma,
+        media: media,
+        maximo: maximo
+    };
+}
+
+// 2. Función que muestra las estadísticas en la página
+function pintarEstadisticas(lista) {
+
+    const resultado = estadisticas(lista);
+    const elemento = document.querySelector("#estadisticas");
+
+    // Comprobamos si hay recetas
+    if (resultado === null) {
+        elemento.textContent = "No hay recetas para calcular las estadísticas.";
+        return;
+    }
+
+    // Mostramos los resultados en la página
+    elemento.textContent = "Tiempo total: " + resultado.total + " minutos. " + "Tiempo medio: " + resultado.media.toFixed(1) + " minutos. " + "Receta que más tarda: " + resultado.maximo.nombre + " (" + resultado.maximo.tiempo + " minutos).";
+}
+
+// 3. Mostramos las estadísticas
+pintarEstadisticas(recetas);
