@@ -559,3 +559,16 @@ document.querySelector("#ordenTiempo").addEventListener("click", () => {
 
 // 7. Mostramos las recetas al abrir la página
 actualizar();
+
+// PARTE C - RETO 3: Mostrando X de Y 
+
+// Muestra cuántas recetas aparecen en la página
+function pintarResumen(mostrados) {
+    const resumen = document.querySelector("#resumen");
+
+    if (mostrados > 0) {
+        resumen.textContent = "Mostrando " + mostrados + " de " + recetas.length + " recetas.";
+    } else {
+        resumen.textContent = 'No hay recetas que contengan "' + textoBuscado + '".';
+    }
+}
