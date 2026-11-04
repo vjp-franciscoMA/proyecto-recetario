@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Mi recetario</title>
-
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -23,11 +21,70 @@
         <button id="ordenFecha">Más recientes primero</button>
     </section>
 
+    <!-- SPRINT 1 - SESIÓN 12 -->
+    <!-- PARTE D: FORMULARIO PARA AÑADIR RECETAS -->
+    <section class="nueva-receta">
+        <h2>Añadir una receta</h2>
+
+        <!-- Campo para escribir el nombre -->
+        <p>
+            <label for="nuevoNombre">Nombre de la receta:</label>
+            <input id="nuevoNombre" type="text" placeholder="Ej. Flan casero" maxlength="50">
+        </p>
+
+        <!-- Campo para seleccionar la categoría -->
+        <p>
+            <label for="nuevaCategoria">Categoría:</label>
+            <select id="nuevaCategoria">
+                <option value="Plato principal">Plato principal</option>
+                <option value="Pasta">Pasta</option>
+                <option value="Arroz">Arroz</option>
+                <option value="Entrante">Entrante</option>
+                <option value="Ensalada">Ensalada</option>
+                <option value="Carne">Carne</option>
+                <option value="Postre">Postre</option>
+            </select>
+        </p>
+
+        <!-- Campo para indicar el tiempo -->
+        <p>
+            <label for="nuevoTiempo">Tiempo (minutos):</label>
+            <input id="nuevoTiempo" type="number" min="1" placeholder="35">
+        </p>
+
+        <!-- Campo para seleccionar la dificultad -->
+        <p>
+            <label for="nuevaDificultad">Dificultad:</label>
+            <select id="nuevaDificultad">
+                <option value="Fácil">Fácil</option>
+                <option value="Media">Media</option>
+                <option value="Difícil">Difícil</option>
+            </select>
+        </p>
+
+        <!-- Campo para indicar las raciones -->
+        <p>
+            <label for="nuevasRaciones">Raciones:</label>
+            <input id="nuevasRaciones" type="number" min="1" placeholder="4">
+        </p>
+
+        <!-- Campo para seleccionar la fecha -->
+        <p>
+            <label for="nuevaFecha">Fecha de última vez:</label>
+            <input id="nuevaFecha" type="date">
+        </p>
+
+        <!-- Botón para añadir la receta -->
+        <button id="anadirReceta" type="button">Añadir receta</button>
+        <p id="avisoNombre"></p>
+    </section>
+
+    <!-- Apartado de estadísticas -->
     <p id="estadisticas"></p>
 
+    <!-- Listado donde aparecerán las tarjetas -->
     <main id="listado"></main>
 
     <script src="js/app.js" defer></script>
-
 </body>
 </html>

@@ -70,6 +70,15 @@ const recetas = [
         dificultad: "Media",
         raciones: 4,
         fechaUltimaVez: "2026-09-18"
+    },
+    {
+        id: 9,
+        nombre: "Flan casero",
+        categoria: "Postre",
+        tiempo: 35,
+        dificultad: "Fácil",
+        raciones: 4,
+        fechaUltimaVez: "2026-10-14"
     }
 ];
 
@@ -87,6 +96,13 @@ const TIEMPO_RAPIDO = 30;
 
 // Constante para considerar una receta reciente
 const DIAS_RECIENTE = 30;
+
+// SPRINT 1 - SESIÓN 12
+// PARTE D: VALIDAR EL NOMBRE DE LA RECETA
+
+// Creo un patrón para comprobar que el nombre
+// tenga entre 2 y 50 letras y permita espacios
+const PATRON_NOMBRE = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,50}$/;
 
 
 // 1. Función para crear una fecha
@@ -350,27 +366,27 @@ console.table(buscarPorTexto(recetas, "ARROZ"));
 
 // Función 3
 // Añadimos una receta de prueba
-const nuevoId = anadir(recetas, {
-    nombre: "Flan casero",
-    categoria: "Postre",
-    tiempo: 35,
-    dificultad: "Fácil",
-    raciones: 4,
-    fechaUltimaVez: "2026-10-14"
-});
+// const nuevoId = anadir(recetas, {
+//     nombre: "Flan casero",
+//     categoria: "Postre",
+//     tiempo: 35,
+//     dificultad: "Fácil",
+//     raciones: 4,
+//     fechaUltimaVez: "2026-10-14"
+// });
 
-console.log("ID de la nueva receta:", nuevoId);
+// console.log("ID de la nueva receta:", nuevoId);
 
-// Función 4
-// Probamos a eliminar la receta con ID 3
-console.log("Eliminar receta 3:", eliminarPorId(recetas, 3));
+// // Función 4
+// // Probamos a eliminar la receta con ID 3
+// console.log("Eliminar receta 3:", eliminarPorId(recetas, 3));
 
-// Probamos a eliminar un ID que no existe
-console.log("Eliminar receta 99:", eliminarPorId(recetas, 99));
+// // Probamos a eliminar un ID que no existe
+// console.log("Eliminar receta 99:", eliminarPorId(recetas, 99));
 
-// Mostramos la lista después de añadir y eliminar
-console.log("--- Recetas después de los cambios ---");
-listar(recetas);
+// // Mostramos la lista después de añadir y eliminar
+// console.log("--- Recetas después de los cambios ---");
+// listar(recetas);
 
 
 // RETO 3: ESTADÍSTICAS DE LAS RECETAS
@@ -724,3 +740,83 @@ criterio = leerCookie("orden") ?? "ninguno";
 
 // A3. Mostramos las recetas al abrir la página
 actualizar();
+
+/* ==========================================
+   SPRINT 1 - SESIÓN 12
+   PARTE D: VALIDAR Y AÑADIR UNA RECETA
+========================================== */
+
+
+// 1. Buscamos el botón para añadir una receta
+const botonAnadir = document.querySelector("#anadirReceta");
+
+
+// 2. Escuchamos el evento click del botón
+botonAnadir.addEventListener("click", () => {
+
+    // Recogemos los datos que hemos escrito en el formulario
+    const nombre = document.querySelector("#nuevoNombre").value.trim();
+    const categoria = document.querySelector("#nuevaCategoria").value;
+    const tiempo = Number(document.querySelector("#nuevoTiempo").value);
+    const dificultad = document.querySelector("#nuevaDificultad").value;
+    const raciones = Number(document.querySelector("#nuevasRaciones").value);
+    const fecha = document.querySelector("#nuevaFecha").value;
+
+    // Buscamos el lugar donde mostraremos los avisos
+    const aviso = document.querySelector("#avisoNombre");
+
+
+    // 3. Comprobamos si el nombre cumple el patrón
+    if (!PATRON_NOMBRE.test(nombre)) {
+
+        // Mostramos un aviso en rojo si el nombre no es válido
+        aviso.textContent = "Nombre no válido. Escribe entre 2 y 50 letras.";
+        aviso.style.color = "red";
+
+        // Detenemos la función para que no se añada la receta
+        return;
+    }
+
+
+    // 4. Comprobamos que los demás campos tengan datos correctos
+    if (tiempo <= 0 || raciones <= 0 || fecha === "") {
+
+        aviso.textContent = "Completa todos los campos correctamente.";
+        aviso.style.color = "red";
+
+        return;
+    }
+
+
+    // 5. Creamos el objeto con los datos de la nueva receta
+    const nuevaReceta = {
+        nombre: nombre,
+        categoria: categoria,
+        tiempo: tiempo,
+        dificultad: dificultad,
+        raciones: raciones,
+        fechaUltimaVez: fecha
+    };
+
+
+    // 6. Añadimos la receta utilizando nuestra función anadir()
+    const nuevoId = anadir(recetas, nuevaReceta);
+
+
+    // 7. Mostramos un mensaje indicando que se ha añadido
+    aviso.textContent = "Receta añadida correctamente. ID: " + nuevoId;
+    aviso.style.color = "green";
+
+
+    // 8. Actualizamos las tarjetas y las estadísticas
+    actualizar();
+    pintarEstadisticas(recetas);
+
+
+    // 9. Limpiamos los campos del formulario
+    document.querySelector("#nuevoNombre").value = "";
+    document.querySelector("#nuevoTiempo").value = "";
+    document.querySelector("#nuevasRaciones").value = "";
+    document.querySelector("#nuevaFecha").value = "";
+
+});
