@@ -6,7 +6,7 @@ const recetas = [
         tiempo: 40,
         dificultad: "Fácil",
         raciones: 4,
-        fechaUltimaVez: "05/10/2026"
+        fechaUltimaVez: "2026-10-05"
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ const recetas = [
         tiempo: 25,
         dificultad: "Fácil",
         raciones: 2,
-        fechaUltimaVez: "03/10/2026"
+        fechaUltimaVez: "2026-10-03"
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ const recetas = [
         tiempo: 60,
         dificultad: "Media",
         raciones: 4,
-        fechaUltimaVez: "01/10/2026"
+        fechaUltimaVez: "2026-10-01"
     },
     {
         id: 4,
@@ -33,7 +33,7 @@ const recetas = [
         tiempo: 15,
         dificultad: "Fácil",
         raciones: 4,
-        fechaUltimaVez: "28/09/2026"
+        fechaUltimaVez: "2026-09-28"
     },
     {
         id: 5,
@@ -42,7 +42,7 @@ const recetas = [
         tiempo: 75,
         dificultad: "Media",
         raciones: 6,
-        fechaUltimaVez: "25/09/2026"
+        fechaUltimaVez: "2026-09-25"
     },
     {
         id: 6,
@@ -51,7 +51,7 @@ const recetas = [
         tiempo: 20,
         dificultad: "Fácil",
         raciones: 2,
-        fechaUltimaVez: "22/09/2026"
+        fechaUltimaVez: "2026-09-22"
     },
     {
         id: 7,
@@ -60,7 +60,7 @@ const recetas = [
         tiempo: 50,
         dificultad: "Fácil",
         raciones: 4,
-        fechaUltimaVez: "20/09/2026"
+        fechaUltimaVez: "2026-09-20"
     },
     {
         id: 8,
@@ -69,9 +69,10 @@ const recetas = [
         tiempo: 45,
         dificultad: "Media",
         raciones: 4,
-        fechaUltimaVez: "18/09/2026"
+        fechaUltimaVez: "2026-09-18"
     }
 ];
+
 
 console.table(recetas);
 
