@@ -82,6 +82,42 @@ console.table(recetas);
 // Tiempo máximo para considerar que una receta es rápida
 const TIEMPO_RAPIDO = 30;
 
+// SPRINT 1 - SESIÓN 12
+// B2. FUNCIONES PARA TRABAJAR CON FECHAS
+
+// Constante para considerar una receta reciente
+const DIAS_RECIENTE = 30;
+
+
+// 1. Función para crear una fecha
+function crearFecha(texto) {
+
+    return new Date(texto + "T00:00");
+}
+
+
+// 2. Función para mostrar una fecha de forma legible
+function fechaLegible(texto) {
+
+    return crearFecha(texto).toLocaleDateString("es-ES", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+}
+
+
+// 3. Función para calcular los días transcurridos desde una fecha
+function diasDesde(texto) {
+
+    const MS_DIA = 24 * 60 * 60 * 1000;
+
+    const ms = Date.now() - crearFecha(texto).getTime();
+
+    return Math.floor(ms / MS_DIA);
+}
+
+
 
 // 1. Función para listar todas las recetas
 function listarTodas(recetas) {
