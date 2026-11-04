@@ -76,7 +76,7 @@ const recetas = [
 console.table(recetas);
 
 
-// Reto 2: listados como funciones
+// RETO 2: LISTADOS COMO FUNCIONES
 
 // Tiempo máximo para considerar que una receta es rápida
 const TIEMPO_RAPIDO = 30;
@@ -93,7 +93,7 @@ function listarTodas(recetas) {
         // Si tarda 30 minutos o menos, es rápida
         // Si tarda más de 30 minutos, es elaborada
         const etiqueta = receta.tiempo <= TIEMPO_RAPIDO ? "rápida" : "elaborada";
-        
+
         // Mostramos el id, nombre y etiqueta
         console.log(`${receta.id}. ${receta.nombre} - ${etiqueta}`);
     }
@@ -207,7 +207,6 @@ console.log(`Encontradas: ${resultado45}`);
 contarPorCategoria(recetas);
 
 
-
 // RETO 2: LAS FUNCIONES DE NUESTRO PROYECTO
 
 // 1. Función para listar las recetas
@@ -222,6 +221,7 @@ function listar(lista) {
         console.log(`${receta.id}. ${receta.nombre} - ${receta.categoria} - ${receta.tiempo} min`);
     }
 }
+
 
 // 2. Función para buscar recetas por texto
 function buscarPorTexto(lista, texto) {
@@ -250,6 +250,7 @@ function buscarPorTexto(lista, texto) {
     return resultado;
 }
 
+
 // 3. Función para añadir una receta
 function anadir(lista, elemento) {
 
@@ -275,6 +276,7 @@ function anadir(lista, elemento) {
     return elemento.id;
 }
 
+
 // 4. Función para eliminar una receta por su ID
 function eliminarPorId(lista, id) {
 
@@ -296,6 +298,7 @@ function eliminarPorId(lista, id) {
     return false;
 }
 
+
 // PRUEBAS DE LAS FUNCIONES NUEVAS
 
 // Función 1
@@ -306,7 +309,7 @@ listar(recetas);
 // Buscamos recetas cuyo nombre contenga "arroz"
 console.log("--- Buscar recetas con arroz ---");
 console.table(buscarPorTexto(recetas, "arroz"));
-console.table(buscarPorTexto(recetas,"ARROZ"));
+console.table(buscarPorTexto(recetas, "ARROZ"));
 
 // Función 3
 // Añadimos una receta de prueba
@@ -378,8 +381,12 @@ estadisticas(recetas);
 estadisticas([]);
 */
 
-/* SPRINT 1 */
-/* PARTE B RETO 2: TU COLECCIÓN EN LA PÁGINA */
+
+/* ==================================================
+   SPRINT 1 - SESIÓN 10
+   PARTE B: TU COLECCIÓN EN LA PÁGINA
+================================================== */
+
 
 // 1. Función que crea una tarjeta para una receta
 function crearTarjeta(elemento) {
@@ -411,6 +418,7 @@ function crearTarjeta(elemento) {
     return tarjeta;
 }
 
+
 // 2. Función que pinta todas las recetas en la página
 function pintar(lista) {
 
@@ -434,10 +442,14 @@ function pintar(lista) {
     document.querySelector("#resumen").textContent = "Hay " + lista.length + " recetas.";
 }
 
+
 // 3. Mostramos las recetas en la página
 // pintar(recetas);
 
-/* PARTE C: ESTADÍSTICAS EN LA PÁGINA */
+
+/* SPRINT 1 - SESIÓN 10
+   PARTE C: ESTADÍSTICAS EN LA PÁGINA */
+
 
 // 1. Función que calcula las estadísticas
 function estadisticas(lista) {
@@ -471,6 +483,7 @@ function estadisticas(lista) {
     };
 }
 
+
 // 2. Función que muestra las estadísticas en la página
 function pintarEstadisticas(lista) {
 
@@ -484,19 +497,27 @@ function pintarEstadisticas(lista) {
     }
 
     // Mostramos los resultados en la página
-    elemento.textContent = "Tiempo total: " + resultado.total + " minutos. " + "Tiempo medio: " + resultado.media.toFixed(1) + " minutos. " + "Receta que más tarda: " + resultado.maximo.nombre + " (" + resultado.maximo.tiempo + " minutos).";
+    elemento.textContent = "Tiempo total: " + resultado.total + " minutos. " +
+        "Tiempo medio: " + resultado.media.toFixed(1) + " minutos. " +
+        "Receta que más tarda: " + resultado.maximo.nombre +
+        " (" + resultado.maximo.tiempo + " minutos).";
 }
+
 
 // 3. Mostramos las estadísticas
 pintarEstadisticas(recetas);
 
 
-// RETO S11
-// PARTE B - RETO 2: Busca y ordena en tu aplicación
+/* ==================================================
+   SPRINT 1 - SESIÓN 11
+   PARTE B - RETO 2: BUSCA Y ORDENA EN TU APLICACIÓN
+================================================== */
+
 
 // 1. Variables para guardar la búsqueda y el orden
 let textoBuscado = "";
 let criterio = "ninguno";
+
 
 // 2. Función para ordenar las recetas
 function ordenar(lista, criterio) {
@@ -518,6 +539,7 @@ function ordenar(lista, criterio) {
     return copia;
 }
 
+
 // 3. Función que actualiza las recetas de la página
 function actualizar() {
 
@@ -534,6 +556,7 @@ function actualizar() {
     pintarResumen(ordenadas.length);
 }
 
+
 // 4. Evento del buscador
 const buscador = document.querySelector("#buscador");
 
@@ -544,34 +567,91 @@ buscador.addEventListener("input", () => {
     actualizar();
 });
 
-// 5. Evento del botón para ordenar por nombre
-document.querySelector("#ordenNombre").addEventListener("click", () => {
 
-    criterio = "nombre";
+/* SPRINT 1 - SESIÓN 11
+   PARTE C - RETO 3: MOSTRANDO X DE Y */
 
-    actualizar();
-});
-
-// 6. Evento del botón para ordenar por tiempo
-document.querySelector("#ordenTiempo").addEventListener("click", () => {
-
-    criterio = "tiempo";
-
-    actualizar();
-});
-
-// 7. Mostramos las recetas al abrir la página
-actualizar();
-
-// PARTE C - RETO 3: Mostrando X de Y 
 
 // Muestra cuántas recetas aparecen en la página
 function pintarResumen(mostrados) {
+
     const resumen = document.querySelector("#resumen");
 
     if (mostrados > 0) {
+
         resumen.textContent = "Mostrando " + mostrados + " de " + recetas.length + " recetas.";
+
     } else {
+
         resumen.textContent = 'No hay recetas que contengan "' + textoBuscado + '".';
     }
 }
+
+
+/* ==================================================
+   SPRINT 1 - SESIÓN 12
+   PARTE A: RETO 1 - RECUERDA EL ÚLTIMO ORDEN
+================================================== */
+
+
+// A1. Función para guardar una cookie
+function guardarCookie(nombre, valor, dias) {
+
+    const segundos = dias * 24 * 60 * 60;
+
+    const texto = encodeURIComponent(valor);
+
+    document.cookie = `${nombre}=${texto}; max-age=${segundos}; path=/`;
+}
+
+
+// A1. Función para leer una cookie
+function leerCookie(nombre) {
+
+    const partes = document.cookie.split("; ");
+
+    for (const parte of partes) {
+
+        const [clave, valor] = parte.split("=");
+
+        if (clave === nombre) {
+
+            return decodeURIComponent(valor);
+        }
+    }
+
+    return null;
+}
+
+
+// A2. Función para elegir y guardar el orden
+function elegirOrden(nuevo) {
+
+    criterio = nuevo;
+
+    guardarCookie("orden", criterio, 30);
+
+    actualizar();
+}
+
+
+// A2. Evento del botón para ordenar por nombre
+document.querySelector("#ordenNombre").addEventListener("click", () => {
+
+    elegirOrden("nombre");
+});
+
+
+// A2. Evento del botón para ordenar por tiempo
+document.querySelector("#ordenTiempo").addEventListener("click", () => {
+
+    elegirOrden("tiempo");
+});
+
+
+// A3. Recuperamos el último orden guardado
+criterio = leerCookie("orden") ?? "ninguno";
+
+
+// A3. Mostramos las recetas al abrir la página
+actualizar();
