@@ -320,7 +320,7 @@ const nuevoId = anadir(recetas, {
     tiempo: 35,
     dificultad: "Fácil",
     raciones: 4,
-    fechaUltimaVez: "14/10/2026"
+    fechaUltimaVez: "2026-10-14"
 });
 
 console.log("ID de la nueva receta:", nuevoId);
