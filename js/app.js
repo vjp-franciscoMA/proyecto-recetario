@@ -588,6 +588,14 @@ function ordenar(lista, criterio) {
 
         // Ordenamos por tiempo, de menor a mayor
         copia.sort((a, b) => a.tiempo - b.tiempo);
+
+    } else if (criterio === "fecha") {
+
+        // SPRINT 1 - SESIÓN 12
+        // B4. Ordenamos por fecha, de más recientes a más antiguas
+        copia.sort((a, b) =>
+            crearFecha(b.fechaUltimaVez) - crearFecha(a.fechaUltimaVez)
+        );
     }
 
     return copia;
@@ -700,6 +708,13 @@ document.querySelector("#ordenNombre").addEventListener("click", () => {
 document.querySelector("#ordenTiempo").addEventListener("click", () => {
 
     elegirOrden("tiempo");
+});
+
+
+// B4. Evento del botón para ordenar por fecha
+document.querySelector("#ordenFecha").addEventListener("click", () => {
+
+    elegirOrden("fecha");
 });
 
 
