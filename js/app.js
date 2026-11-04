@@ -448,13 +448,30 @@ function crearTarjeta(elemento) {
     const dificultad = document.createElement("p");
     dificultad.textContent = "Dificultad: " + elemento.dificultad;
 
+
+    // SPRINT 1 - SESIÓN 12
+    // B3. Añadimos la fecha a la tarjeta
+
+    const fecha = document.createElement("p");
+    fecha.classList.add("fecha");
+
+    // Mostramos la fecha de forma legible
+    fecha.textContent = fechaLegible(elemento.fechaUltimaVez);
+
+    // Comprobamos si la receta es reciente
+    if (diasDesde(elemento.fechaUltimaVez) <= DIAS_RECIENTE) {
+
+        // Destacamos la tarjeta si es reciente
+        tarjeta.classList.add("reciente");
+    }
+
+
     // Añadimos los datos a la tarjeta
-    tarjeta.append(titulo, categoria, tiempo, dificultad);
+    tarjeta.append(titulo, categoria, tiempo, dificultad, fecha);
 
     // Devolvemos la tarjeta creada
     return tarjeta;
 }
-
 
 // 2. Función que pinta todas las recetas en la página
 function pintar(lista) {

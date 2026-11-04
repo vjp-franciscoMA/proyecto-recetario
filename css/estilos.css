@@ -19,3 +19,15 @@ body {
     box-shadow: 0 1px 4px #0003;
 }
 
+/* SPRINT 1 - SESIÓN 12 */
+/* B3. Destacar las recetas recientes */
+
+.reciente {
+    border-left: 6px solid #f26b3a;
+}
+
+/* Formato de la fecha de cada receta */
+.fecha {
+    color: #6b7785;
+    font-size: .9rem;
+}
