@@ -1,7 +1,22 @@
 /* ==========================================
    SPRINT 2 - SESIÓN 14
-   PARTE B - B1: MÓDULO DE INTERFAZ
+   PARTE B - B2: IMPORTAR LOS MÓDULOS
 ========================================== */
+
+// Importamos nuestra colección de recetas.
+import { recetas } from "./datos.js";
+
+// Importamos las funciones y constantes que necesitamos.
+import {
+    DIAS_RECIENTE,
+    PATRON_NOMBRE,
+    fechaLegible,
+    diasDesde,
+    buscarPorTexto,
+    anadir,
+    estadisticas,
+    ordenar
+} from "./logica.js";
 
 
 /* ------------------------------------------
@@ -95,10 +110,6 @@ function pintarEstadisticas(lista) {
 }
 
 
-// Mostramos las estadísticas al cargar la página.
-pintarEstadisticas(recetas);
-
-
 /* ------------------------------------------
    BUSCADOR Y ORDENACIÓN
 ------------------------------------------ */
@@ -165,7 +176,7 @@ function guardarCookie(nombre, valor, dias) {
     const texto = encodeURIComponent(valor);
 
     document.cookie =
-        `nombre={texto}; max-age=${segundos}; path=/`;
+        `${nombre}=${texto}; max-age=${segundos}; path=/`;
 }
 
 
@@ -299,4 +310,5 @@ botonAnadir.addEventListener("click", () => {
 
 
 // Mostramos las recetas al iniciar la página.
+pintarEstadisticas(recetas);
 actualizar();

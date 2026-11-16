@@ -1,9 +1,9 @@
 /* ==========================================
    SPRINT 2 - SESIÓN 14
-   PARTE B - B1: MÓDULO DE DATOS
+   PARTE B - B2: EXPORTAR LOS DATOS
 ========================================== */
 
-// Guardamos aquí los datos de nuestra colección de recetas.
+// Exportamos nuestra colección para que otros módulos puedan utilizarla.
 export const recetas = [
     {
         id: 1,

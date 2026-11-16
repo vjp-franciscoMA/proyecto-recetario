@@ -1,18 +1,17 @@
 /* ==========================================
    SPRINT 2 - SESIÓN 14
-   PARTE B - B1: MÓDULO DE LÓGICA
+   PARTE B - B2: MÓDULO DE LÓGICA
 ========================================== */
 
 
 // Tiempo máximo para considerar que una receta es rápida.
 const TIEMPO_RAPIDO = 30;
 
-// Número de días para considerar una receta reciente.
-const DIAS_RECIENTE = 30;
+// Exportamos los días para considerar una receta reciente.
+export const DIAS_RECIENTE = 30;
 
-// Patrón para validar el nombre de una receta.
-// Permitimos entre 2 y 50 letras y espacios.
-const PATRON_NOMBRE = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,50}$/;
+// Exportamos el patrón para validar el nombre de las recetas.
+export const PATRON_NOMBRE = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,50}$/;
 
 
 /* ------------------------------------------
@@ -26,8 +25,8 @@ function crearFecha(texto) {
 }
 
 
-// Convertimos una fecha a un formato legible.
-function fechaLegible(texto) {
+// Exportamos la función que muestra una fecha de forma legible.
+export function fechaLegible(texto) {
 
     return crearFecha(texto).toLocaleDateString("es-ES", {
         day: "numeric",
@@ -37,8 +36,8 @@ function fechaLegible(texto) {
 }
 
 
-// Calculamos los días transcurridos desde una fecha.
-function diasDesde(texto) {
+// Exportamos la función que calcula los días transcurridos.
+export function diasDesde(texto) {
 
     const MS_DIA = 24 * 60 * 60 * 1000;
 
@@ -172,8 +171,8 @@ function listar(lista) {
    FUNCIONES PRINCIPALES DEL RECETARIO
 ------------------------------------------ */
 
-// Buscamos recetas cuyo nombre contenga un texto.
-function buscarPorTexto(lista, texto) {
+// Exportamos la función que busca recetas por su nombre.
+export function buscarPorTexto(lista, texto) {
 
     const buscado = texto.toLowerCase();
 
@@ -195,8 +194,8 @@ function buscarPorTexto(lista, texto) {
 }
 
 
-// Añadimos una receta y le asignamos un nuevo ID.
-function anadir(lista, elemento) {
+// Exportamos la función que añade una receta y le asigna un nuevo ID.
+export function anadir(lista, elemento) {
 
     let mayorId = 0;
 
@@ -236,8 +235,8 @@ function eliminarPorId(lista, id) {
 }
 
 
-// Calculamos las estadísticas de las recetas.
-function estadisticas(lista) {
+// Exportamos la función que calcula las estadísticas.
+export function estadisticas(lista) {
 
     // Comprobamos si la lista está vacía.
     if (lista.length === 0) {
@@ -268,8 +267,8 @@ function estadisticas(lista) {
 }
 
 
-// Ordenamos las recetas según el criterio recibido.
-function ordenar(lista, criterio) {
+// Exportamos la función que ordena las recetas.
+export function ordenar(lista, criterio) {
 
     // Creamos una copia para no modificar el array original.
     const copia = [...lista];
