@@ -195,7 +195,7 @@ function guardarCookie(nombre, valor, dias) {
     const texto = encodeURIComponent(valor);
 
     document.cookie =
-        `nombre={texto}; max-age=${segundos}; path=/`;
+        `${nombre}=${texto}; max-age=${segundos}; path=/`;
 }
 
 
