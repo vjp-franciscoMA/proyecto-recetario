@@ -52,8 +52,8 @@ export class Receta {
         return `${horas} h ${minutos} min`;
     }
 
-    // Método: devolvemos una descripción de la receta.
+    // B4: Método que devuelve la descripción de la receta para la tarjeta.
     descripcion() {
-        return `${this.nombre} · ${this.categoria} · ${this.tiempoTexto} · ${this.dificultad} · ${this.raciones} raciones`;
+        return `${this.categoria} · ${this.tiempoTexto} · ${this.dificultad} · ${this.raciones} raciones`;
     }
 }

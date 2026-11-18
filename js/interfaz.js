@@ -1,4 +1,3 @@
-
 /* ==========================================
    SPRINT 2 - SESIÓN 14
    PARTE B - B2: IMPORTAR LOS MÓDULOS
@@ -22,6 +21,7 @@ import {
     ordenar
 } from "./logica.js";
 
+
 /* ==========================================
    SPRINT 2 - SESIÓN 15
    RETO 2 - PARTE B3
@@ -35,6 +35,13 @@ const recetas = [];
 for (const datos of datosRecetas) {
     recetas.push(new Receta(datos));
 }
+
+
+/* ==========================================
+   SPRINT 2 - SESIÓN 15
+   RETO 2 - PARTE B4
+   LA TARJETA UTILIZA LA CLASE
+========================================== */
 
 
 /* ------------------------------------------
@@ -51,17 +58,11 @@ function crearTarjeta(elemento) {
     const titulo = document.createElement("h3");
     titulo.textContent = elemento.nombre;
 
-    // Creamos el párrafo de la categoría.
-    const categoria = document.createElement("p");
-    categoria.textContent = "Categoría: " + elemento.categoria;
+    // B4: Creamos un párrafo para mostrar la descripción de la receta.
+    const datos = document.createElement("p");
 
-    // Creamos el párrafo del tiempo.
-    const tiempo = document.createElement("p");
-    tiempo.textContent = "Tiempo: " + elemento.tiempo + " minutos";
-
-    // Creamos el párrafo de la dificultad.
-    const dificultad = document.createElement("p");
-    dificultad.textContent = "Dificultad: " + elemento.dificultad;
+    // B4: Utilizamos el método descripcion() de nuestra clase Receta.
+    datos.textContent = elemento.descripcion();
 
     // Añadimos la fecha de última vez.
     const fecha = document.createElement("p");
@@ -75,7 +76,7 @@ function crearTarjeta(elemento) {
     }
 
     // Añadimos todos los datos a la tarjeta.
-    tarjeta.append(titulo, categoria, tiempo, dificultad, fecha);
+    tarjeta.append(titulo, datos, fecha);
 
     return tarjeta;
 }
@@ -194,7 +195,7 @@ function guardarCookie(nombre, valor, dias) {
     const texto = encodeURIComponent(valor);
 
     document.cookie =
-        `${nombre}=${texto}; max-age=${segundos}; path=/`;
+        `nombre={texto}; max-age=${segundos}; path=/`;
 }
 
 
@@ -253,6 +254,13 @@ document.querySelector("#ordenFecha").addEventListener("click", () => {
 criterio = leerCookie("orden") ?? "ninguno";
 
 
+/* ==========================================
+   SPRINT 2 - SESIÓN 15
+   RETO 2 - PARTE B4
+   FORMULARIO: CREAR RECETAS CON LA CLASE
+========================================== */
+
+
 /* ------------------------------------------
    FORMULARIO PARA AÑADIR RECETAS
 ------------------------------------------ */
@@ -296,8 +304,8 @@ botonAnadir.addEventListener("click", () => {
         return;
     }
 
-    // Creamos el objeto con los datos de la nueva receta.
-    const nuevaReceta = {
+    // B4: Creamos un objeto con los datos de la nueva receta.
+    const datosNuevaReceta = {
         nombre: nombre,
         categoria: categoria,
         tiempo: tiempo,
@@ -306,7 +314,10 @@ botonAnadir.addEventListener("click", () => {
         fechaUltimaVez: fecha
     };
 
-    // Añadimos la receta utilizando nuestra función.
+    // B4: Creamos una instancia de la clase Receta con esos datos.
+    const nuevaReceta = new Receta(datosNuevaReceta);
+
+    // Añadimos la instancia a nuestra colección y le asignamos un ID.
     const nuevoId = anadir(recetas, nuevaReceta);
 
     // Mostramos un mensaje de confirmación.
