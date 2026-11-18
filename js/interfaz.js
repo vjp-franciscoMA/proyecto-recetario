@@ -1,10 +1,14 @@
+
 /* ==========================================
    SPRINT 2 - SESIÓN 14
    PARTE B - B2: IMPORTAR LOS MÓDULOS
 ========================================== */
 
-// Importamos nuestra colección de recetas.
-import { recetas } from "./datos.js";
+// Importamos los datos originales de las recetas.
+import { datosRecetas } from "./datos.js";
+
+// Importamos nuestra clase Receta.
+import { Receta } from "./receta.js";
 
 // Importamos las funciones y constantes que necesitamos.
 import {
@@ -17,6 +21,20 @@ import {
     estadisticas,
     ordenar
 } from "./logica.js";
+
+/* ==========================================
+   SPRINT 2 - SESIÓN 15
+   RETO 2 - PARTE B3
+   LA COLECCIÓN, HECHA DE INSTANCIAS
+========================================== */
+
+// B3: Creamos un array para guardar las instancias de Receta.
+const recetas = [];
+
+// B3: Convertimos cada objeto de datos en una instancia de la clase Receta.
+for (const datos of datosRecetas) {
+    recetas.push(new Receta(datos));
+}
 
 
 /* ------------------------------------------
