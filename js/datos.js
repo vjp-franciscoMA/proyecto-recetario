@@ -4,7 +4,7 @@
 ========================================== */
 
 // Exportamos nuestra colección para que otros módulos puedan utilizarla.
-export const recetas = [
+export const datosRecetas = [
     {
         id: 1,
         nombre: "Tortilla de patatas",
