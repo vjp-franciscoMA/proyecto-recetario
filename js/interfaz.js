@@ -14,7 +14,6 @@ import {
     DIAS_RECIENTE,
     PATRON_NOMBRE,
     fechaLegible,
-    diasDesde,
     buscarPorTexto,
     anadir,
     estadisticas,
@@ -69,8 +68,8 @@ function crearTarjeta(elemento) {
     fecha.classList.add("fecha");
     fecha.textContent = fechaLegible(elemento.fechaUltimaVez);
 
-    // Comprobamos si la receta es reciente.
-    if (diasDesde(elemento.fechaUltimaVez) <= DIAS_RECIENTE) {
+    // C: Utilizamos el método de nuestra clase Receta para comprobar si es reciente.
+    if (elemento.esReciente(DIAS_RECIENTE)) {
 
         tarjeta.classList.add("reciente");
     }

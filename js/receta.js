@@ -56,4 +56,26 @@ export class Receta {
     descripcion() {
         return `${this.categoria} · ${this.tiempoTexto} · ${this.dificultad} · ${this.raciones} raciones`;
     }
+
+    /* ==========================================
+       SPRINT 2 - SESIÓN 15
+       RETO 3 - PARTE C
+       UN MÉTODO QUE CALCULA
+    ========================================== */
+
+    // C: Comprobamos si la receta está dentro de los últimos días indicados.
+    esReciente(dias) {
+
+        const MS_DIA = 24 * 60 * 60 * 1000;
+
+        const fechaReceta = new Date(this.fechaUltimaVez + "T00:00");
+
+        const diasTranscurridos = Math.floor(
+            (Date.now() - fechaReceta.getTime()) / MS_DIA
+        );
+
+        // Devolvemos true si la receta está dentro del periodo indicado.
+        return diasTranscurridos >= 0 && diasTranscurridos <= dias;
+    }
+
 }
