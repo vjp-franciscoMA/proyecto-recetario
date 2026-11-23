@@ -1,7 +1,8 @@
-/* ==========================================
-   SPRINT 2 - SESIÓN 14
-   PARTE B - B2: IMPORTAR LOS MÓDULOS
-========================================== */
+
+// ==========================================
+// SPRINT 2 - SESIÓN 14
+// PARTE B - B2: IMPORTAR LOS MÓDULOS
+// ==========================================
 
 // Importamos los datos originales de las recetas.
 import { datosRecetas } from "./datos.js";
@@ -9,31 +10,27 @@ import { datosRecetas } from "./datos.js";
 // Importamos nuestra clase Receta.
 import { Receta } from "./receta.js";
 
+// Importamos nuestra clase gestora.
+import { Recetario } from "./recetario.js";
+
 // Importamos las funciones y constantes que necesitamos.
 import {
     DIAS_RECIENTE,
     PATRON_NOMBRE,
     fechaLegible,
-    buscarPorTexto,
-    anadir,
     estadisticas,
     ordenar
 } from "./logica.js";
 
 
 /* ==========================================
-   SPRINT 2 - SESIÓN 15
+   SPRINT 2 - SESIÓN 16
    RETO 2 - PARTE B3
-   LA COLECCIÓN, HECHA DE INSTANCIAS
+   LA INTERFAZ UTILIZA LA CLASE GESTORA
 ========================================== */
 
-// B3: Creamos un array para guardar las instancias de Receta.
-const recetas = [];
-
-// B3: Convertimos cada objeto de datos en una instancia de la clase Receta.
-for (const datos of datosRecetas) {
-    recetas.push(new Receta(datos));
-}
+// Creamos el recetario a partir de los datos originales.
+const recetario = Recetario.desdeDatos(datosRecetas);
 
 
 /* ==========================================
@@ -141,7 +138,7 @@ let criterio = "ninguno";
 function actualizar() {
 
     // Primero buscamos las recetas que coinciden.
-    const encontradas = buscarPorTexto(recetas, textoBuscado);
+    const encontradas = recetario.buscar(textoBuscado);
 
     // Después ordenamos los resultados.
     const ordenadas = ordenar(encontradas, criterio);
@@ -160,13 +157,11 @@ function pintarResumen(mostrados) {
 
     if (mostrados > 0) {
 
-        resumen.textContent =
-            "Mostrando " + mostrados + " de " + recetas.length + " recetas.";
+        resumen.textContent = "Mostrando " + mostrados + " de " + recetario.total + " recetas.";
 
     } else {
 
-        resumen.textContent =
-            'No hay recetas que contengan "' + textoBuscado + '".';
+        resumen.textContent = 'No hay recetas que contengan "' + textoBuscado + '".';
     }
 }
 
@@ -316,8 +311,8 @@ botonAnadir.addEventListener("click", () => {
     // B4: Creamos una instancia de la clase Receta con esos datos.
     const nuevaReceta = new Receta(datosNuevaReceta);
 
-    // Añadimos la instancia a nuestra colección y le asignamos un ID.
-    const nuevoId = anadir(recetas, nuevaReceta);
+    // B3: Añadimos la receta utilizando la clase gestora.
+    const nuevoId = recetario.anadir(nuevaReceta);
 
     // Mostramos un mensaje de confirmación.
     aviso.textContent =
@@ -327,7 +322,7 @@ botonAnadir.addEventListener("click", () => {
 
     // Actualizamos las tarjetas y las estadísticas.
     actualizar();
-    pintarEstadisticas(recetas);
+    pintarEstadisticas(recetario.listar());
 
     // Limpiamos los campos del formulario.
     document.querySelector("#nuevoNombre").value = "";
@@ -338,5 +333,5 @@ botonAnadir.addEventListener("click", () => {
 
 
 // Mostramos las recetas al iniciar la página.
-pintarEstadisticas(recetas);
+pintarEstadisticas(recetario.listar());
 actualizar();
