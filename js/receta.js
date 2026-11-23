@@ -1,9 +1,17 @@
-// Sprint 2 - Sesión 15 - Parte B2
+/* ==========================================
+   SPRINT 2 - SESIÓN 15
+   PARTE B2 - CLASE RECETA
+========================================== */
 
-// Creamos y exportamos la clase Receta.
+/**
+ * Representa una receta con sus datos y métodos.
+ */
 export class Receta {
 
-    // Recibimos un objeto con los datos de la receta.
+    /**
+     * Crea una receta a partir de un objeto con sus datos.
+     * @param {Object} datos - Objeto con los datos de la receta.
+     */
     constructor(datos) {
 
         // Copiamos cada campo del objeto recibido.
@@ -19,12 +27,18 @@ export class Receta {
         this.fechaUltimaVez = datos.fechaUltimaVez;
     }
 
-    // Getter: nos permite consultar el tiempo.
+    /**
+     * Devuelve el tiempo de preparación de la receta.
+     * @returns {number} El tiempo en minutos.
+     */
     get tiempo() {
         return this._tiempo;
     }
 
-    // Setter: valida el tiempo antes de guardarlo.
+    /**
+     * Valida el tiempo antes de guardarlo.
+     * @param {number} minutos - El tiempo de preparación en minutos.
+     */
     set tiempo(minutos) {
 
         // Comprobamos que sea un número mayor que 0.
@@ -36,7 +50,10 @@ export class Receta {
         this._tiempo = minutos;
     }
 
-    // Getter: calculamos el tiempo en horas y minutos para mostrarlo.
+    /**
+     * Calcula el tiempo de preparación en horas y minutos.
+     * @returns {string} El tiempo en un formato legible.
+     */
     get tiempoTexto() {
         const horas = Math.floor(this.tiempo / 60);
         const minutos = this.tiempo % 60;
@@ -52,7 +69,10 @@ export class Receta {
         return `${horas} h ${minutos} min`;
     }
 
-    // B4: Método que devuelve la descripción de la receta para la tarjeta.
+    /**
+     * Devuelve la descripción de la receta para mostrarla en la tarjeta.
+     * @returns {string} La descripción de la receta.
+     */
     descripcion() {
         return `${this.categoria} · ${this.tiempoTexto} · ${this.dificultad} · ${this.raciones} raciones`;
     }
@@ -63,7 +83,11 @@ export class Receta {
        UN MÉTODO QUE CALCULA
     ========================================== */
 
-    // C: Comprobamos si la receta está dentro de los últimos días indicados.
+    /**
+     * Comprueba si la receta está dentro de los últimos días indicados.
+     * @param {number} dias - Número de días para considerar una receta reciente.
+     * @returns {boolean} true si la receta es reciente, false si no lo es.
+     */
     esReciente(dias) {
 
         const MS_DIA = 24 * 60 * 60 * 1000;

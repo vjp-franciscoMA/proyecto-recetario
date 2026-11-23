@@ -10,27 +10,40 @@ import { Receta } from "./receta.js";
 // Importamos las funciones que necesitamos.
 import { buscarPorTexto, anadir } from "./logica.js";
 
-// Creamos y exportamos la clase Recetario.
+/**
+ * Gestiona la colección de recetas.
+ */
 export class Recetario {
-  // Constructor que recibe la colección de recetas.
+
+  /**
+   * Crea un recetario a partir de una colección de recetas.
+   * @param {Receta[]} recetas - Lista de recetas.
+   */
   constructor(recetas) {
+
     // Guardamos la colección dentro de la clase.
     this._recetas = recetas;
   }
 
   /* ==========================================
-       SPRINT 2 - SESIÓN 16
-       RETO 2 - PARTE B2
-       MÉTODO STATIC PARA CREAR LA COLECCIÓN
-    ========================================== */
+     SPRINT 2 - SESIÓN 16
+     RETO 2 - PARTE B2
+     MÉTODO STATIC PARA CREAR LA COLECCIÓN
+  ========================================== */
 
-  // Método estático que crea la colección de recetas.
+  /**
+   * Crea un recetario a partir de los datos recibidos.
+   * @param {Object[]} datos - Array con los datos de las recetas.
+   * @returns {Recetario} Un nuevo recetario con todas las recetas.
+   */
   static desdeDatos(datos) {
+
     // Creamos un array vacío para guardar las recetas.
     const recetas = [];
 
     // Recorremos los datos recibidos.
     for (const elemento of datos) {
+
       // Creamos una instancia de Receta por cada objeto.
       recetas.push(new Receta(elemento));
     }
@@ -39,27 +52,47 @@ export class Recetario {
     return new Recetario(recetas);
   }
 
-  // Getter que devuelve cuántas recetas tenemos.
+  /**
+   * Devuelve cuántas recetas tenemos en la colección.
+   * @returns {number} El número total de recetas.
+   */
   get total() {
+
     return this._recetas.length;
   }
 
-  // Método que devuelve una copia de la lista.
+  /**
+   * Devuelve una copia de la lista de recetas.
+   * @returns {Receta[]} La copia de la colección.
+   */
   listar() {
+
     return [...this._recetas];
   }
 
-  // Método para añadir una receta.
+  /**
+   * Añade una receta a la colección.
+   * @param {Receta} elemento - La receta que se quiere añadir.
+   * @returns {number} El identificador asignado a la receta.
+   */
   anadir(elemento) {
+
     return anadir(this._recetas, elemento);
   }
 
-  // Método para eliminar una receta utilizando su ID.
+  /**
+   * Elimina una receta utilizando su identificador.
+   * @param {number} id - El identificador de la receta.
+   * @returns {boolean} true si se elimina y false si no existe.
+   */
   eliminar(id) {
+
     // Recorremos la colección.
     for (let i = 0; i < this._recetas.length; i++) {
+
       // Comprobamos si encontramos el ID.
       if (this._recetas[i].id === id) {
+
         // Eliminamos la receta.
         this._recetas.splice(i, 1);
 
@@ -71,8 +104,13 @@ export class Recetario {
     return false;
   }
 
-  // Método para buscar recetas por su nombre.
+  /**
+   * Busca las recetas cuyo nombre contiene un texto.
+   * @param {string} texto - El texto que se busca.
+   * @returns {Receta[]} Las recetas que lo contienen.
+   */
   buscar(texto) {
+
     return buscarPorTexto(this._recetas, texto);
   }
 }
