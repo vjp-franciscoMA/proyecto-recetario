@@ -1,4 +1,3 @@
-
 /* ==========================================
    SPRINT 2 - SESIÓN 16
    RETO 2 - PARTE B1
@@ -11,58 +10,69 @@ import { Receta } from "./receta.js";
 // Importamos las funciones que necesitamos.
 import { buscarPorTexto, anadir } from "./logica.js";
 
-
 // Creamos y exportamos la clase Recetario.
 export class Recetario {
+  // Constructor que recibe la colección de recetas.
+  constructor(recetas) {
+    // Guardamos la colección dentro de la clase.
+    this._recetas = recetas;
+  }
 
-    // Constructor que recibe la colección de recetas.
-    constructor(recetas) {
+  /* ==========================================
+       SPRINT 2 - SESIÓN 16
+       RETO 2 - PARTE B2
+       MÉTODO STATIC PARA CREAR LA COLECCIÓN
+    ========================================== */
 
-        // Guardamos la colección dentro de la clase.
-        this._recetas = recetas;
+  // Método estático que crea la colección de recetas.
+  static desdeDatos(datos) {
+    // Creamos un array vacío para guardar las recetas.
+    const recetas = [];
+
+    // Recorremos los datos recibidos.
+    for (const elemento of datos) {
+      // Creamos una instancia de Receta por cada objeto.
+      recetas.push(new Receta(elemento));
     }
 
-    // Getter que devuelve cuántas recetas tenemos.
-    get total() {
+    // Devolvemos un nuevo objeto de la clase Recetario.
+    return new Recetario(recetas);
+  }
 
-        return this._recetas.length;
+  // Getter que devuelve cuántas recetas tenemos.
+  get total() {
+    return this._recetas.length;
+  }
+
+  // Método que devuelve una copia de la lista.
+  listar() {
+    return [...this._recetas];
+  }
+
+  // Método para añadir una receta.
+  anadir(elemento) {
+    return anadir(this._recetas, elemento);
+  }
+
+  // Método para eliminar una receta utilizando su ID.
+  eliminar(id) {
+    // Recorremos la colección.
+    for (let i = 0; i < this._recetas.length; i++) {
+      // Comprobamos si encontramos el ID.
+      if (this._recetas[i].id === id) {
+        // Eliminamos la receta.
+        this._recetas.splice(i, 1);
+
+        return true;
+      }
     }
 
-    // Método que devuelve una copia de la lista.
-    listar() {
+    // Devolvemos false si no encontramos el ID.
+    return false;
+  }
 
-        return [...this._recetas];
-    }
-
-    // Método para añadir una receta.
-    anadir(elemento) {
-
-        return anadir(this._recetas, elemento);
-    }
-
-    // Método para eliminar una receta utilizando su ID.
-    eliminar(id) {
-
-        // Recorremos la colección.
-        for (let i = 0; i < this._recetas.length; i++) {
-
-            // Comprobamos si encontramos el ID.
-            if (this._recetas[i].id === id) {
-
-                // Eliminamos la receta.
-                this._recetas.splice(i, 1);
-
-                return true;
-            }
-        }
-
-        // Devolvemos false si no encontramos el ID.
-        return false;
-    }
-
-    // Método para buscar recetas por su nombre.
-    buscar(texto) {
-
-        return buscarPorTexto(this._recetas, texto);
-    }
+  // Método para buscar recetas por su nombre.
+  buscar(texto) {
+    return buscarPorTexto(this._recetas, texto);
+  }
 }
