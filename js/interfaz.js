@@ -163,6 +163,9 @@ function actualizar() {
     pintar(ordenadas);
 
     pintarResumen(ordenadas.length);
+
+    // B3: Actualizamos el panel de estadísticas.
+    pintarEstadisticas();
 }
 
 
@@ -338,7 +341,6 @@ botonAnadir.addEventListener("click", () => {
 
     // Actualizamos las tarjetas y las estadísticas.
     actualizar();
-    pintarEstadisticas();
 
     // Limpiamos los campos del formulario.
     document.querySelector("#nuevoNombre").value = "";
@@ -348,8 +350,5 @@ botonAnadir.addEventListener("click", () => {
 });
 
 
-// Mostramos las estadísticas al iniciar la página.
-pintarEstadisticas();
-
-// Mostramos las recetas al iniciar la página.
+// Mostramos las recetas y las estadísticas al iniciar la página.
 actualizar();
