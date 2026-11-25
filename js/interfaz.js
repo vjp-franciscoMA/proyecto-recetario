@@ -1,4 +1,3 @@
-
 // ==========================================
 // SPRINT 2 - SESIÓN 14
 // PARTE B - B2: IMPORTAR LOS MÓDULOS
@@ -18,7 +17,6 @@ import {
     DIAS_RECIENTE,
     PATRON_NOMBRE,
     fechaLegible,
-    estadisticas,
     ordenar
 } from "./logica.js";
 
@@ -99,29 +97,47 @@ function pintar(lista) {
 }
 
 
-/* ------------------------------------------
-   ESTADÍSTICAS EN LA PÁGINA
------------------------------------------- */
+/* ==========================================
+   SPRINT 2 - SESIÓN 17
+   RETO 2 - PARTE B2
+   PANEL DE ESTADÍSTICAS
+========================================== */
 
 // Mostramos las estadísticas de nuestra colección.
-function pintarEstadisticas(lista) {
+function pintarEstadisticas() {
 
-    const resultado = estadisticas(lista);
-    const elemento = document.querySelector("#estadisticas");
+    // Buscamos el panel de estadísticas.
+    const panel = document.querySelector("#estadisticas");
+
+    // Vaciamos el panel.
+    panel.replaceChildren();
+
+    // Obtenemos las estadísticas de la clase gestora.
+    const datos = recetario.estadisticas();
 
     // Comprobamos si hay recetas.
-    if (resultado === null) {
+    if (datos === null) {
 
-        elemento.textContent = "No hay recetas para calcular las estadísticas.";
+        panel.textContent = "No hay recetas para calcular las estadísticas.";
         return;
     }
 
-    // Mostramos los resultados.
-    elemento.textContent =
-        "Tiempo total: " + resultado.total + " minutos. " +
-        "Tiempo medio: " + resultado.media.toFixed(1) + " minutos. " +
-        "Receta que más tarda: " + resultado.maximo.nombre +
-        " (" + resultado.maximo.tiempo + " minutos).";
+    // Preparamos los textos que mostraremos en el panel.
+    const lineas = [
+        "Tiempo total: " + datos.total + " minutos.",
+        "Tiempo medio: " + datos.media.toFixed(1) + " minutos.",
+        "Recetas fáciles: " + datos.faciles
+    ];
+
+    // Creamos un elemento li por cada estadística.
+    for (const linea of lineas) {
+
+        const li = document.createElement("li");
+
+        li.textContent = linea;
+
+        panel.append(li);
+    }
 }
 
 
@@ -322,7 +338,7 @@ botonAnadir.addEventListener("click", () => {
 
     // Actualizamos las tarjetas y las estadísticas.
     actualizar();
-    pintarEstadisticas(recetario.listar());
+    pintarEstadisticas();
 
     // Limpiamos los campos del formulario.
     document.querySelector("#nuevoNombre").value = "";
@@ -332,6 +348,8 @@ botonAnadir.addEventListener("click", () => {
 });
 
 
+// Mostramos las estadísticas al iniciar la página.
+pintarEstadisticas();
+
 // Mostramos las recetas al iniciar la página.
-pintarEstadisticas(recetario.listar());
 actualizar();

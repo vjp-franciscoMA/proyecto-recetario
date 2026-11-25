@@ -31,3 +31,11 @@ body {
     color: #6b7785;
     font-size: .9rem;
 }
+
+.panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    list-style: none;
+    padding: 0;
+}
