@@ -113,4 +113,44 @@ export class Recetario {
 
     return buscarPorTexto(this._recetas, texto);
   }
+
+
+    /* ==========================================
+       SPRINT 2 - SESIÓN 17
+       RETO 2 - PARTE B1
+       MÉTODO DE ESTADÍSTICAS
+    ========================================== */
+
+    /**
+     * Calcula las estadísticas de la colección de recetas.
+     * @returns {Object|null} Las estadísticas o null si no hay recetas.
+     */
+    estadisticas() {
+
+        // Comprobamos si la colección está vacía.
+        if (this._recetas.length === 0) {
+
+            return null;
+        }
+
+        // Calculamos el tiempo total de todas las recetas con reduce.
+        const total = this._recetas.reduce((suma, receta) => suma + receta.tiempo, 0);
+
+        // Calculamos cuántas recetas tienen dificultad fácil con filter.
+        const faciles = this._recetas.filter((receta) => receta.dificultad === "Fácil").length;
+
+        // Obtenemos los nombres de las recetas fáciles con filter y map.
+        const nombresFaciles = this._recetas.filter((receta) => receta.dificultad === "Fácil").map((receta) => receta.nombre);
+
+        // Calculamos el tiempo medio.
+        const media = total / this._recetas.length;
+
+        // Devolvemos todas las estadísticas.
+        return {
+            total: total,
+            media: media,
+            faciles: faciles,
+            nombresFaciles: nombresFaciles
+        };
+    }
 }
