@@ -38,6 +38,16 @@ export class Recetario {
    */
   static desdeDatos(datos) {
 
+    // Bucle anterior:
+    /*
+    const recetas = [];
+
+    for (const elemento of datos) {
+
+      recetas.push(new Receta(elemento));
+    }
+    */
+
     // C: Utilizamos map para crear una instancia de Receta por cada dato.
     const recetas = datos.map((elemento) => new Receta(elemento));
 
@@ -79,6 +89,21 @@ export class Recetario {
    * @returns {boolean} true si se elimina y false si no existe.
    */
   eliminar(id) {
+
+    // Bucle anterior:
+    /*
+    for (let i = 0; i < this._recetas.length; i++) {
+
+      if (this._recetas[i].id === id) {
+
+        this._recetas.splice(i, 1);
+
+        return true;
+      }
+    }
+
+    return false;
+    */
 
     // C: Utilizamos filter para crear una colección sin la receta eliminada.
     let eliminado = false;
@@ -135,7 +160,9 @@ export class Recetario {
     const faciles = this._recetas.filter((receta) => receta.dificultad === "Fácil").length;
 
     // Obtenemos los nombres de las recetas fáciles con filter y map.
-    const nombresFaciles = this._recetas.filter((receta) => receta.dificultad === "Fácil").map((receta) => receta.nombre);
+    const nombresFaciles = this._recetas
+      .filter((receta) => receta.dificultad === "Fácil")
+      .map((receta) => receta.nombre);
 
     // Calculamos el tiempo medio.
     const media = total / this._recetas.length;

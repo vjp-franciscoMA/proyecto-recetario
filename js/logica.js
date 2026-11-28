@@ -234,39 +234,6 @@ function eliminarPorId(lista, id) {
     return false;
 }
 
-
-// Exportamos la función que calcula las estadísticas.
-export function estadisticas(lista) {
-
-    // Comprobamos si la lista está vacía.
-    if (lista.length === 0) {
-        return null;
-    }
-
-    let suma = 0;
-    let maximo = lista[0];
-
-    // Recorremos las recetas para sumar tiempos y buscar el máximo.
-    for (const receta of lista) {
-
-        suma += receta.tiempo;
-
-        if (receta.tiempo > maximo.tiempo) {
-            maximo = receta;
-        }
-    }
-
-    const media = suma / lista.length;
-
-    // Devolvemos los resultados.
-    return {
-        total: suma,
-        media: media,
-        maximo: maximo
-    };
-}
-
-
 // Exportamos la función que ordena las recetas.
 export function ordenar(lista, criterio) {
 
