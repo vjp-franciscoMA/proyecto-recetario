@@ -1,8 +1,8 @@
-/* ==========================================
-   SPRINT 2 - SESIÓN 16
-   RETO 2 - PARTE B1
-   LA CLASE GESTORA DEL RECETARIO
-========================================== */
+// ==========================================
+// SPRINT 2 - SESIÓN 16
+// RETO 2 - PARTE B1
+// LA CLASE GESTORA DEL RECETARIO
+// ==========================================
 
 // Importamos nuestra clase Receta.
 import { Receta } from "./receta.js";
@@ -38,15 +38,8 @@ export class Recetario {
    */
   static desdeDatos(datos) {
 
-    // Creamos un array vacío para guardar las recetas.
-    const recetas = [];
-
-    // Recorremos los datos recibidos.
-    for (const elemento of datos) {
-
-      // Creamos una instancia de Receta por cada objeto.
-      recetas.push(new Receta(elemento));
-    }
+    // C: Utilizamos map para crear una instancia de Receta por cada dato.
+    const recetas = datos.map((elemento) => new Receta(elemento));
 
     // Devolvemos un nuevo objeto de la clase Recetario.
     return new Recetario(recetas);
@@ -87,21 +80,23 @@ export class Recetario {
    */
   eliminar(id) {
 
-    // Recorremos la colección.
-    for (let i = 0; i < this._recetas.length; i++) {
+    // C: Utilizamos filter para crear una colección sin la receta eliminada.
+    let eliminado = false;
 
-      // Comprobamos si encontramos el ID.
-      if (this._recetas[i].id === id) {
+    this._recetas = this._recetas.filter((elemento) => {
 
-        // Eliminamos la receta.
-        this._recetas.splice(i, 1);
+      // Eliminamos solamente la primera receta que tenga ese ID.
+      if (elemento.id === id && !eliminado) {
 
-        return true;
+        eliminado = true;
+        return false;
       }
-    }
 
-    // Devolvemos false si no encontramos el ID.
-    return false;
+      return true;
+    });
+
+    // Devolvemos si hemos encontrado y eliminado la receta.
+    return eliminado;
   }
 
   /**
@@ -115,42 +110,42 @@ export class Recetario {
   }
 
 
-    /* ==========================================
-       SPRINT 2 - SESIÓN 17
-       RETO 2 - PARTE B1
-       MÉTODO DE ESTADÍSTICAS
-    ========================================== */
+  /* ==========================================
+     SPRINT 2 - SESIÓN 17
+     RETO 2 - PARTE B1
+     MÉTODO DE ESTADÍSTICAS
+  ========================================== */
 
-    /**
-     * Calcula las estadísticas de la colección de recetas.
-     * @returns {Object|null} Las estadísticas o null si no hay recetas.
-     */
-    estadisticas() {
+  /**
+   * Calcula las estadísticas de la colección de recetas.
+   * @returns {Object|null} Las estadísticas o null si no hay recetas.
+   */
+  estadisticas() {
 
-        // Comprobamos si la colección está vacía.
-        if (this._recetas.length === 0) {
+    // Comprobamos si la colección está vacía.
+    if (this._recetas.length === 0) {
 
-            return null;
-        }
-
-        // Calculamos el tiempo total de todas las recetas con reduce.
-        const total = this._recetas.reduce((suma, receta) => suma + receta.tiempo, 0);
-
-        // Calculamos cuántas recetas tienen dificultad fácil con filter.
-        const faciles = this._recetas.filter((receta) => receta.dificultad === "Fácil").length;
-
-        // Obtenemos los nombres de las recetas fáciles con filter y map.
-        const nombresFaciles = this._recetas.filter((receta) => receta.dificultad === "Fácil").map((receta) => receta.nombre);
-
-        // Calculamos el tiempo medio.
-        const media = total / this._recetas.length;
-
-        // Devolvemos todas las estadísticas.
-        return {
-            total: total,
-            media: media,
-            faciles: faciles,
-            nombresFaciles: nombresFaciles
-        };
+      return null;
     }
+
+    // Calculamos el tiempo total de todas las recetas con reduce.
+    const total = this._recetas.reduce((suma, receta) => suma + receta.tiempo, 0);
+
+    // Calculamos cuántas recetas tienen dificultad fácil con filter.
+    const faciles = this._recetas.filter((receta) => receta.dificultad === "Fácil").length;
+
+    // Obtenemos los nombres de las recetas fáciles con filter y map.
+    const nombresFaciles = this._recetas.filter((receta) => receta.dificultad === "Fácil").map((receta) => receta.nombre);
+
+    // Calculamos el tiempo medio.
+    const media = total / this._recetas.length;
+
+    // Devolvemos todas las estadísticas.
+    return {
+      total: total,
+      media: media,
+      faciles: faciles,
+      nombresFaciles: nombresFaciles
+    };
+  }
 }
